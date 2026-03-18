@@ -14,7 +14,7 @@ export default function Home() {
     <>
       <div style={{ maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
         <header style={{
-          padding: '40px 40px 12px 40px',
+          padding: 'clamp(20px, 6vw, 40px) clamp(20px, 6vw, 40px) 12px clamp(20px, 6vw, 40px)',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -62,7 +62,7 @@ export default function Home() {
         <div style={{
           maxWidth: '1200px',
           margin: '0 auto',
-          padding: '80px 40px 120px 40px',
+          padding: '80px clamp(20px, 6vw, 40px) 120px clamp(20px, 6vw, 40px)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-start'

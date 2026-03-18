@@ -18,6 +18,7 @@
   animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   opacity: 0;
   width: 100%;
+  padding: 0 clamp(20px, 6vw, 40px);
 }
 
 .topPill {
@@ -34,7 +35,7 @@
 }
 
 .headline {
-  font-size: clamp(3.5rem, 7vw, 6.5rem);
+  font-size: clamp(2.5rem, 8vw, 6.5rem);
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.05em;
