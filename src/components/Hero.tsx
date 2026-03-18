@@ -9,15 +9,25 @@ interface HeroProps {
 
 export default function Hero({ onCtaClick }: HeroProps) {
   const [scrollY, setScrollY] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleResize);
+    
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    handleResize(); // Set initial scale based on device width
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
-  const maxScale = 2.2;
+  const maxScale = isMobile ? 1.1 : 2.2;
   const phaseLength = 400; 
 
   // "Open briefs" shrinks from maxScale to 1
