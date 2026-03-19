@@ -43,6 +43,7 @@
   position: absolute;
   top: -40px;
   right: -20px;
+  width: clamp(280px, 35vw, 420px);
   height: auto;
   border-radius: 12px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
@@ -69,7 +70,7 @@
   .floatingImage {
     top: -20px;
     right: 0px;
-    max-width: 80vw;
+    max-width: 40vw;
   }
 }
 
