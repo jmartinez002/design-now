@@ -25,11 +25,9 @@ export default function Home() {
           zIndex: 50
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            {/* 1. Put your icon/logo inside the "public" folder (like "logo.png") */}
-            {/* 2. Uncomment the image element below to use it instead of the placeholder square */}
-            {/* <img src="/logo.png" alt="Logo" style={{ width: '32px', height: '32px', borderRadius: '8px' }} /> */}
-            {/* NOTE: Just replace the placeholder div below with your <img src="..." /> tag when ready */}
-            <div style={{ width: '90px', height: '32px', backgroundColor: '#e5e5e5', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', color: '#666', fontWeight: 600 }}>LOGO</div>
+
+            <img src="/blogo.png" alt="Logo" style={{ width: '135px', height: '26.75px', borderRadius: '8px' }} />
+
           </div>
           <button
             onClick={scrollToSignup}
@@ -73,8 +71,9 @@ export default function Home() {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
             {/* Uncomment when adding logo */}
-            {/* <img src="/logo.png" alt="Logo" style={{ width: '32px', height: '32px', borderRadius: '8px' }} /> */}
-            <div style={{ width: '90px', height: '32px', backgroundColor: '#333333', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', color: '#aaaaaa', fontWeight: 600 }}>LOGO</div>
+
+            <img src="/logow.png" alt="Logo" style={{ width: '135px', height: '26.75px', borderRadius: '8px' }} />
+
           </div>
           <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: '500', lineHeight: '1.1', marginBottom: '16px', letterSpacing: '-0.04em' }}>
             See if Abierto Briefs is<br />the right fit for you<br /><span className="nostalgic-italic" style={{ color: 'var(--brand-yellow)' }}>it totally is</span>
