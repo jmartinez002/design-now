@@ -19,6 +19,7 @@
   opacity: 0;
   width: 100%;
   padding: 0 clamp(20px, 6vw, 40px);
+  container-type: inline-size;
 }
 
 .topPill {
@@ -35,12 +36,13 @@
 }
 
 .headline {
-  font-size: clamp(3.5rem, 13vw, 10rem);
+  font-size: 15.5cqw;
   font-weight: 600;
   line-height: 0.85;
   letter-spacing: -0.05em;
   margin-bottom: 24px;
   word-spacing: -0.02em;
+  white-space: nowrap;
 }
 
 .subtext {
