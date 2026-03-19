@@ -31,7 +31,24 @@ export async function POST(request: Request) {
         from: 'Abierto Briefs <hello@abiertostudio.com>',
         to: email,
         subject: 'You’re in. Your first brief lands Sunday.',
-        html: `<p>Hi ${firstName},</p><p>Welcome to Abierto Briefs. Be ready!</p>`,
+        html: `
+          <div style="font-family: Helvetica, Arial, sans-serif; line-height: 1.6; color: #111;">
+            <p>Hi ${firstName},</p>
+            <p>Glad you’re here.</p>
+            <p>
+              Every Sunday, you’ll get a real client-style brief.<br/>
+              Not a prompt—an actual scenario with context and direction.
+            </p>
+            <p>
+              Take it, design your solution, and build it into your portfolio.
+            </p>
+            <p>
+              That’s it. Just consistent reps.
+            </p>
+            <p>Your first brief lands Sunday.</p>
+            <p>— Abierto</p>
+          </div>
+        `
       });
     }
 
