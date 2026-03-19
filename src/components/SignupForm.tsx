@@ -42,8 +42,8 @@ export default function SignupForm() {
             <Image
               src="/smc.png"
               alt="Monthly Club Card"
-              width={260}
-              height={180}
+              width={800}
+              height={554}
               className={styles.floatingImage}
             />
             <div className={styles.badge}>

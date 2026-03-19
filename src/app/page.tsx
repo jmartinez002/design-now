@@ -31,7 +31,7 @@ export default function Home() {
             onClick={scrollToSignup}
             style={{
               zIndex: 1000,
-              backgroundColor: 'var(--foreground)',
+              backgroundColor: 'var(--brand-yellow)',
               color: 'var(--background)',
               padding: '10px 24px',
               borderRadius: '99px',
