@@ -28,10 +28,10 @@ export async function POST(request: Request) {
 
     if (resendApiKey !== 'mock_key') {
       await resend.emails.send({
-        from: 'Abierto <hello@abiertostudio.com>',
+        from: 'Abierto Briefs <hello@abiertostudio.com>',
         to: email,
         subject: 'You’re in. Your first brief lands Sunday.',
-        html: `<p>Hi ${firstName},</p><p>Welcome to Abierto. Be ready. Real briefs. No fluff.</p>`,
+        html: `<p>Hi ${firstName},</p><p>Welcome to Abierto Briefs. Be ready!</p>`,
       });
     }
 

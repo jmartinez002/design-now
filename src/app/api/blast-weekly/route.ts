@@ -4,7 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
 
 // Allow this function to run up to 60 seconds since it might be emailing a lot of people!
-export const maxDuration = 60; 
+export const maxDuration = 60;
 
 const geminiApiKey = process.env.GEMINI_API_KEY || 'mock_key';
 const supabaseUrl = process.env.SUPABASE_URL || 'mock_url';
@@ -48,16 +48,16 @@ Keep tone realistic, not generic. Pick a random category from: Coffee shops, Sau
       model: 'gemini-2.5-flash',
       contents: prompt
     });
-    
+
     const briefText = aiResponse.text || "Weekly Brief Generation Failed.";
 
     // 3. FETCH ALL USERS FROM SUPABASE
     const { data: designers, error: dbError } = await supabase
       .from('designers')
       .select('email, first_name');
-      
+
     if (dbError) throw dbError;
-    
+
     if (!designers || designers.length === 0) {
       return NextResponse.json({ message: 'Success, but no designers found in the database.' });
     }
@@ -77,7 +77,7 @@ Keep tone realistic, not generic. Pick a random category from: Coffee shops, Sau
       `;
 
       return resend.emails.send({
-        from: 'Abierto <hello@abiertostudio.com>',
+        from: 'Abierto Briefs <hello@abiertostudio.com>',
         to: designer.email,
         subject: 'Your Sunday Design Brief is Here 🎯',
         html: htmlBody,
