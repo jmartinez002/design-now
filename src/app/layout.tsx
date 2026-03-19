@@ -10,6 +10,9 @@ const nostalgicaReg = localFont({
 export const metadata: Metadata = {
   title: "Abierto - Open briefs for designers.",
   description: "Get real client briefs delivered weekly. Build portfolio work that actually feels real.",
+  icons: {
+    icon: '/icon.png?v=2', 
+  },
 };
 
 export default function RootLayout({
