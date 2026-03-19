@@ -10,7 +10,7 @@ export default function Hero({ onCtaClick }: HeroProps) {
   return (
     <section className={styles.hero}>
       <div className={styles.stickyContainer}>
-        <div className={styles.content} style={{ marginTop: '-50px', letterSpacing: '-0.05em' }}>
+        <div className={styles.content} style={{ marginTop: '-100px', letterSpacing: '-0.05em' }}>
           <h1 className={styles.headline}>
             <div style={{ marginBottom: '12px' }}>Open briefs</div>
             <div>
@@ -18,7 +18,7 @@ export default function Hero({ onCtaClick }: HeroProps) {
             </div>
           </h1>
           <p className={styles.subtext}>
-            Get real client briefs delivered weekly. <br/>Build portfolio work that actually feels real.
+            Get real client briefs delivered weekly. <br />Build portfolio work that actually feels real.
           </p>
           <button className={styles.cta} onClick={onCtaClick}>
             Get your first brief
