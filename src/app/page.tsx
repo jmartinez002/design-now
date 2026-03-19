@@ -19,9 +19,9 @@ export default function Home() {
           justifyContent: 'space-between',
           alignItems: 'center',
           position: 'sticky',
+          top: 0,
           width: '100%',
-          backgroundColor: 'rgba(253, 253, 253, 0.8)',
-          backdropFilter: 'blur(1px)',
+          backgroundColor: 'transparent',
           zIndex: 50
         }}>
           <div style={{ fontWeight: '700', fontSize: '1.5rem', letterSpacing: '-0.03em' }}>
