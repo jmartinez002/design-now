@@ -24,8 +24,15 @@ export default function Home() {
           backgroundColor: 'transparent',
           zIndex: 50
         }}>
-          <div style={{ fontWeight: '700', fontSize: '1.5rem', letterSpacing: '-0.03em' }}>
-            Abierto<span style={{ color: 'var(--brand-yellow)' }}>.</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            {/* 1. Put your icon/logo inside the "public" folder (like "logo.png") */}
+            {/* 2. Uncomment the image element below to use it instead of the placeholder square */}
+            {/* <img src="/logo.png" alt="Logo" style={{ width: '32px', height: '32px', borderRadius: '8px' }} /> */}
+            <div style={{ width: '32px', height: '32px', backgroundColor: '#e5e5e5', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px' }}>✨</div>
+            
+            <div style={{ fontWeight: '700', fontSize: '1.5rem', letterSpacing: '-0.03em' }}>
+              Abierto<span style={{ color: 'var(--brand-yellow)' }}>.</span>
+            </div>
           </div>
           <button
             onClick={scrollToSignup}
@@ -67,8 +74,14 @@ export default function Home() {
           flexDirection: 'column',
           alignItems: 'flex-start'
         }}>
-          <div style={{ fontWeight: '700', fontSize: '1.5rem', letterSpacing: '-0.03em', marginBottom: '24px' }}>
-            Abierto<span style={{ color: 'var(--brand-yellow)' }}>.</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
+            {/* Uncomment when adding logo */}
+            {/* <img src="/logo.png" alt="Logo" style={{ width: '32px', height: '32px', borderRadius: '8px' }} /> */}
+            <div style={{ width: '32px', height: '32px', backgroundColor: '#333333', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px' }}>✨</div>
+
+            <div style={{ fontWeight: '700', fontSize: '1.5rem', letterSpacing: '-0.03em' }}>
+              Abierto<span style={{ color: 'var(--brand-yellow)' }}>.</span>
+            </div>
           </div>
           <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: '500', lineHeight: '1.1', marginBottom: '16px', letterSpacing: '-0.04em' }}>
             See if Abierto Briefs is<br />the right fit for you<br /><span className="nostalgic-italic" style={{ color: 'var(--brand-yellow)' }}>it totally is</span>
