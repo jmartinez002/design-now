@@ -25,9 +25,7 @@ export default function Home() {
           zIndex: 50
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-
-            <img src="/logo_b.png" alt="Logo" style={{ width: '67px', height: '25.5px' }} />
-
+            <div className="nostalgic-italic" style={{ fontSize: '2.5rem', lineHeight: 1 }}>abierto</div>
           </div>
           <button
             onClick={scrollToSignup}
@@ -70,10 +68,7 @@ export default function Home() {
           alignItems: 'flex-start'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
-            {/* Uncomment when adding logo */}
-
-            <img src="/logo_w.png" alt="Logo" style={{ width: '67.0625px', height: '25.25px' }} />
-
+            <div className="nostalgic-italic" style={{ fontSize: '3rem', lineHeight: 1 }}>abierto</div>
           </div>
           <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: '500', lineHeight: '1.1', marginBottom: '16px', letterSpacing: '-0.04em' }}>
             See if Abierto Briefs is<br />the right fit for you<br /><span className="nostalgic-italic" style={{ color: 'var(--brand-yellow)' }}>it totally is</span>
