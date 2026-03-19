@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import styles from './Hero.module.css';
 
 interface HeroProps {
@@ -8,73 +7,14 @@ interface HeroProps {
 }
 
 export default function Hero({ onCtaClick }: HeroProps) {
-  const [scrollY, setScrollY] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleResize);
-    
-    handleScroll();
-    handleResize(); // Set initial scale based on device width
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  const maxScale = isMobile ? 1.1 : 2.2;
-  const phaseLength = 400; 
-
-  // "Open briefs" shrinks from maxScale to 1
-  const openBriefsScale = scrollY < phaseLength 
-    ? Math.max(1, maxScale - (scrollY / phaseLength) * (maxScale - 1))
-    : 1;
-
-  // "designers" grows earlier as requested
-  const startGrowing = 100; // Trigger the scaling much sooner
-  let designersScale = 1;
-  if (scrollY > startGrowing && scrollY <= startGrowing + phaseLength) {
-    designersScale = 1 + ((scrollY - startGrowing) / phaseLength) * (maxScale - 1);
-  } else if (scrollY > startGrowing + phaseLength && scrollY <= startGrowing + 2 * phaseLength) {
-    designersScale = Math.max(1, maxScale - ((scrollY - (startGrowing + phaseLength)) / phaseLength) * (maxScale - 1));
-  }
-
   return (
     <section className={styles.hero}>
       <div className={styles.stickyContainer}>
         <div className={styles.content} style={{ marginTop: '-50px', letterSpacing: '-0.05em' }}>
           <h1 className={styles.headline}>
-            <div 
-              style={{ 
-                transform: `scale(${openBriefsScale})`, 
-                transformOrigin: 'left center',
-                display: 'inline-block',
-                willChange: 'transform',
-                marginBottom: '40px'
-              }}
-            >
-              Open briefs
-            </div>
-            <br />
+            <div style={{ marginBottom: '12px' }}>Open briefs</div>
             <div>
-              for{' '}
-              <span 
-                className="nostalgic-italic"
-                style={{ 
-                  color: 'var(--brand-yellow)',
-                  transform: `scale(${designersScale})`,
-                  transformOrigin: 'left center',
-                  display: 'inline-block',
-                  willChange: 'transform'
-                }}
-              >
-                designers
-              </span>
+              for <span className="nostalgic-italic" style={{ color: 'var(--brand-yellow)' }}>designers</span>
             </div>
           </h1>
           <p className={styles.subtext}>

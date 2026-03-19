@@ -26,7 +26,7 @@ export default function Home() {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
 
-            <img src="/blogo.png" alt="Logo" style={{ width: '135px', height: '26.75px', borderRadius: '8px' }} />
+            <img src="/logo_b.png" alt="Logo" style={{ width: '67px', height: '25.5px' }} />
 
           </div>
           <button
@@ -72,7 +72,7 @@ export default function Home() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
             {/* Uncomment when adding logo */}
 
-            <img src="/logow.png" alt="Logo" style={{ width: '135px', height: '26.75px', borderRadius: '8px' }} />
+            <img src="/logo_w.png" alt="Logo" style={{ width: '67.0625px', height: '25.25px' }} />
 
           </div>
           <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: '500', lineHeight: '1.1', marginBottom: '16px', letterSpacing: '-0.04em' }}>
