@@ -74,7 +74,7 @@ export default function SignupForm() {
               {status === 'success' ? (
                 <div className={styles.successState}>
                   <h2 className={styles.successHeadline}>You’re in.</h2>
-                  <p className={styles.successSubtext}>Your first brief lands Sunday. No fluff.</p>
+                  <p className={styles.successSubtext}>Your first brief lands Sunday!</p>
                 </div>
               ) : (
                 <form className={styles.form} onSubmit={handleSubmit}>
