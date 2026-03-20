@@ -74,7 +74,7 @@ export default function SignupForm() {
               {status === 'success' ? (
                 <div className={styles.successState}>
                   <h2 className={styles.successHeadline}>You’re in.</h2>
-                  <p className={styles.successSubtext}>Your first brief lands Sunday!</p>
+                  <p className={styles.successSubtext}>Your first brief lands Monday!</p>
                 </div>
               ) : (
                 <form className={styles.form} onSubmit={handleSubmit}>
@@ -124,24 +124,22 @@ export default function SignupForm() {
           <div className={styles.infoBox}>
             <div className={styles.infoBoxHeader}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="10" y1="15" x2="10" y2="9"></line>
-                <line x1="14" y1="15" x2="14" y2="9"></line>
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
               </svg>
-              Pause anytime
+              Submit your work
             </div>
-            <p>Temporarily pause your subscription anytime, no sweat.</p>
+            <p>Submit your link or email your designs directly. I personally review every piece to pick the top 5.</p>
           </div>
 
           <div className={styles.infoBox}>
             <div className={styles.infoBoxHeader}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
               </svg>
-              Try it for a month
+              Sunday Showcase
             </div>
-            <p>Not loving it after a week? Unsubscribe with one click, no questions asked.</p>
+            <p>Get featured in our top 5 Sunday showcase and see how others approached the real-world brief.</p>
           </div>
         </div>
 

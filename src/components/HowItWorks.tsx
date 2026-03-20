@@ -4,20 +4,20 @@ export default function HowItWorks() {
   const steps = [
     {
       number: '01',
-      title: 'Sign up',
-      desc: 'Join Abierto and prepare for your first assignment.',
+      title: 'Get the brief',
+      desc: 'A new realistic client scenario drops in your inbox every Monday.',
       colorClass: styles.cardYellow
     },
     {
       number: '02',
-      title: 'Get a brief',
-      desc: 'Receive a realistic client scenario in your inbox every Sunday.',
+      title: 'Build your portfolio',
+      desc: 'Do the work to stack your portfolio, then submit your final design.',
       colorClass: styles.cardBlue
     },
     {
       number: '03',
-      title: 'Build portfolio',
-      desc: 'Design and build your work to attract real clients.',
+      title: 'Get showcased',
+      desc: 'Top submissions are featured in our Sunday Showcase.',
       colorClass: styles.cardRed
     },
   ];

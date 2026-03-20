@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import Hero from '@/components/Hero';
 import HowItWorks from '@/components/HowItWorks';
 import Value from '@/components/Value';
@@ -27,22 +28,39 @@ export default function Home() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <div className="nostalgic-italic" style={{ fontSize: '2.5rem', lineHeight: 1 }}>abierto</div>
           </div>
-          <button
-            onClick={scrollToSignup}
-            style={{
-              zIndex: 1000,
-              backgroundColor: 'var(--brand-yellow)',
-              color: 'var(--background)',
-              padding: '10px 24px',
-              borderRadius: '99px',
-              fontSize: '0.875rem',
-              fontWeight: '600',
-              border: 'none',
-              cursor: 'pointer'
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Link 
+              href="/submit"
+              style={{
+                backgroundColor: '#000000',
+                color: '#ffffff',
+                textDecoration: 'none',
+                padding: '10px 24px',
+                borderRadius: '99px',
+                fontSize: '0.875rem',
+                fontWeight: '600',
+                border: '1px solid #333'
+              }}
+            >
+              Submit
+            </Link>
+            <button
+              onClick={scrollToSignup}
+              style={{
+                zIndex: 1000,
+                backgroundColor: 'var(--brand-yellow)',
+                color: 'var(--background)',
+                padding: '10px 24px',
+                borderRadius: '99px',
+                fontSize: '0.875rem',
+                fontWeight: '600',
+                border: 'none',
+                cursor: 'pointer'
 
-            }}>
-            Get Started
-          </button>
+              }}>
+              Get Started
+            </button>
+          </div>
         </header>
 
         <main>
@@ -74,7 +92,7 @@ export default function Home() {
             See if Abierto Briefs is<br />the right fit for you<br /><span className="nostalgic-italic" style={{ color: 'var(--brand-yellow)' }}>it totally is</span>
           </h2>
           <p style={{ color: '#a1a1aa', fontSize: '1.125rem', marginBottom: '80px', maxWidth: '400px' }}>
-            Get realistic client scenarios delivered to your inbox every Sunday.
+            Get realistic client scenarios delivered every Monday, submit or email your work, and get featured in the Sunday showcase.
           </p>
 
           <img src="/smile.svg" alt="Smile" className="footer-smile" />
@@ -88,7 +106,7 @@ export default function Home() {
             paddingTop: '40px'
           }}>
             <div style={{ fontSize: '0.875rem', color: '#71717a' }}>
-              &copy; {new Date().getFullYear()} Abierto. All rights reserved.
+              &copy; 2026 Abierto. All rights reserved.
             </div>
             <div className="font-mono" style={{ fontSize: '0.875rem', color: '#71717a' }}>
               SYSTEM / ONLINE

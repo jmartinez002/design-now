@@ -16,7 +16,7 @@ export default function Value() {
             It’s <span className="nostalgic-italic" style={{ padding: '0 8px' }}>"your vision made visible"</span> better
           </h2>
           <p className={styles.subtitle}>
-            Join designers who are making their portfolio work stand out with beautiful, industry-accurate client scenarios.
+            Join a community of designers making their portfolio work stand out with beautiful, industry-accurate client scenarios and weekly showcases.
           </p>
         </div>
         <div className={styles.grid}>

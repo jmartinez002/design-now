@@ -18,7 +18,7 @@ export default function Hero({ onCtaClick }: HeroProps) {
             </div>
           </h1>
           <p className={styles.subtext}>
-            Get real client briefs delivered weekly. <br />Build portfolio work that actually feels real.
+            Get realistic client briefs delivered every Monday. <br />Submit your designs to build your portfolio and get featured.
           </p>
           <button className={styles.cta} onClick={onCtaClick}>
             Get your first brief
