@@ -46,10 +46,6 @@ export default function SignupForm() {
               height={554}
               className={styles.floatingImage}
             />
-            <div className={styles.badge}>
-              <span className={styles.yellowDot}></span>
-              Start today
-            </div>
             <h2 className={styles.mainTitle}>
               Join <br />
               <span className="nostalgic-italic" style={{ fontWeight: 'normal' }}>Abierto Briefs</span>

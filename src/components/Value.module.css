@@ -1,5 +1,5 @@
 .section {
-  padding: 100px 20px;
+  padding: 10px 20px;
   background-color: var(--background);
   display: flex;
   justify-content: center;
@@ -16,6 +16,7 @@
 }
 
 .title {
+  font-size: larger;
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 500;
   margin-bottom: 24px;
