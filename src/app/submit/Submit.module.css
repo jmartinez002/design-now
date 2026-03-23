@@ -147,7 +147,7 @@
   margin-top: 8px;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: #27272a;
   color: #ffffff;
   padding: 12px 24px;

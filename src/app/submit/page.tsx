@@ -65,29 +65,24 @@ export default function SubmitPage() {
               <form className={styles.form} onSubmit={handleSubmit}>
                 <div className={styles.row}>
                   <div className={styles.field}>
-                    <label htmlFor="firstName">First Name</label>
-                    <input className={styles.input} type="text" id="firstName" name="firstName" placeholder="Jane" required />
+                    <input className={styles.input} type="text" id="firstName" name="firstName" placeholder="First Name" required />
                   </div>
                   <div className={styles.field}>
-                    <label htmlFor="lastName">Last Name</label>
-                    <input className={styles.input} type="text" id="lastName" name="lastName" placeholder="Doe" required />
+                    <input className={styles.input} type="text" id="lastName" name="lastName" placeholder="Last Name" required />
                   </div>
                 </div>
 
                 <div className={styles.field}>
-                  <label htmlFor="email">Email</label>
-                  <input className={styles.input} type="email" id="email" name="email" placeholder="jane@example.com" required />
+                  <input className={styles.input} type="email" id="email" name="email" placeholder="Email" required />
                 </div>
 
                 <div className={styles.field}>
-                  <label htmlFor="portfolioLink">Link to Work</label>
-                  <input className={styles.input} type="text" id="portfolioLink" name="portfolioLink" placeholder="figma.com/..." required />
+                  <input className={styles.input} type="text" id="portfolioLink" name="portfolioLink" placeholder="Link to Work (figma.com/...)" required />
                   <span className={styles.helpText}>Figma, Dribbble, Twitter, or Personal Website</span>
                 </div>
 
                 <div className={styles.field}>
-                  <label htmlFor="message">Note <span className={styles.optional}>(optional)</span></label>
-                  <textarea className={styles.textarea} id="message" name="message" placeholder="Any context or thoughts on your direction?" rows={3} />
+                  <textarea className={styles.textarea} id="message" name="message" placeholder="Note (optional)" rows={3} />
                 </div>
 
                 <button
