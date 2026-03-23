@@ -20,6 +20,7 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const secret = searchParams.get('secret');
+    const testEmail = searchParams.get('testEmail'); // Allows safe testing
 
     // 1. SECURITY CHECK
     // Only allow this script to run if the secret code is passed in the URL
@@ -32,54 +33,105 @@ export async function GET(request: Request) {
     }
 
     // 2. GENERATE THE WEEKLY BRIEF USING GEMINI
-    const prompt = `Generate a realistic small business client brief for a designer. Include:
-• Brand name
-• Industry
-• Owner name and personality
-• Background story
-• What they need designed
-• Target audience
-• Creative direction
-• Constraints
+    const prompt = `Generate a realistic email from a small business owner to a designer they want to hire.
 
-Keep tone realistic, not generic. Pick a random category from: Coffee shops, Sauces / food brands, Mezcal / beverage brands, Churches / nonprofits, Startups, Local businesses.`;
+Return the response as a JSON object with two fields:
+1. "brandName": The name of the small business/client.
+2. "emailBody": The actual email content.
+
+The emailBody must follow these strict rules:
+- It should read exactly like a real email from a client to a designer.
+- Tone: realistic, natural, professional but approachable. NOT generic.
+- Format with short paragraphs. 
+- The generated brand name MUST be short (mainly 1-2 words).
+- Do NOT include any greeting (like "Hi Name" or "Hello") at the beginning. It will be added automatically. Start immediately with the first paragraph.
+- Order of information:
+  1. The owner introducing themselves directly into the first paragraph.
+  2. Them asking what they are looking for (their design needs).
+  3. Their industry and business details.
+  4. Additional information like their target audience, background, and owner personality.
+- YOU MUST include this exact sentence near the end: "If you're interested in potentially collaborating, please submit your approach using this link: https://abiertostudio.com/submit"
+- The email must be signed off by the business owner directly (e.g. "Best, [Owner Name]").
+- Do NOT use markdown formatting, bolding, or asterisks (*). Just plain text.
+- Do NOT mention anything about "generation", "prompt", AI, or that this is a brief. 
+
+Pick a random category from: Coffee shops, Sauces / food brands, Mezcal / beverage brands, Churches / nonprofits, Startups, Local businesses.`;
 
     const aiResponse = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
-      contents: prompt
+      contents: prompt,
+      config: {
+        responseMimeType: "application/json",
+      }
     });
 
-    const briefText = aiResponse.text || "Weekly Brief Generation Failed.";
+    const aiText = aiResponse.text || "{}";
+    let brandName = "A Local Business";
+    let emailBody = "Hi, we are looking for a designer. Please let us know if you can help.";
+    try {
+      const parsed = JSON.parse(aiText);
+      if (parsed.brandName) brandName = parsed.brandName;
+      if (parsed.emailBody) emailBody = parsed.emailBody;
+    } catch (e) {
+      console.error("Failed to parse Gemini JSON", e);
+      emailBody = aiText;
+    }
 
-    // 3. FETCH ALL USERS FROM SUPABASE
-    const { data: designers, error: dbError } = await supabase
-      .from('designers')
-      .select('email, first_name');
+    let designersToEmail = [];
 
-    if (dbError) throw dbError;
+    if (testEmail) {
+      // 3A. TEST MODE: Only send to the provided test email
+      designersToEmail = [{ email: testEmail, first_name: 'TestDesigner' }];
+    } else {
+      // 3B. LIVE MODE: FETCH ALL USERS FROM SUPABASE
+      const { data: designers, error: dbError } = await supabase
+        .from('designers')
+        .select('email, first_name');
 
-    if (!designers || designers.length === 0) {
-      return NextResponse.json({ message: 'Success, but no designers found in the database.' });
+      if (dbError) throw dbError;
+
+      if (!designers || designers.length === 0) {
+        return NextResponse.json({ message: 'Success, but no designers found in the database.' });
+      }
+      
+      designersToEmail = designers;
     }
 
     // 4. BLAST EMAILS USING RESEND
     // Format Gemini's plain text output into simple HTML paragraphs
-    const formattedHtml = `<div style="font-family: sans-serif; white-space: pre-wrap; line-height: 1.5; color: #111;">${briefText}</div>`;
+    const paragraphs = emailBody
+      .split('\n')
+      .map(p => p.trim())
+      .filter(p => p.length > 0)
+      .map(p => `<p style="margin-bottom: 12px;">${p}</p>`)
+      .join('');
+
+    // Determine dynamic base URL for unsubscribe link
+    const host = request.headers.get('host') || 'abiertostudio.com';
+    const protocol = host.includes('localhost') ? 'http' : 'https';
+    const baseUrl = `${protocol}://${host}`;
 
     // Loop through everyone and send individual emails simultaneously
-    const emailPromises = designers.map((designer) => {
+    const emailPromises = designersToEmail.map((designer: any) => {
+      const subject = `${designer.first_name} x ${brandName}`;
+      
       // Create a nice HTML wrapper
       const htmlBody = `
-        <p>Hi ${designer.first_name},</p>
-        <p>Your new weekly brief has arrived. Good luck.</p>
-        <hr style="border: 1px solid #eee; margin: 24px 0;" />
-        ${formattedHtml}
+        <div style="font-family: sans-serif; line-height: 1.5; color: #111;">
+          <p style="margin-bottom: 24px;">Hi ${designer.first_name},</p>
+          ${paragraphs}
+          
+          <div style="margin-top: 48px; padding-top: 24px; border-top: 1px solid #eee; font-size: 12px; color: #666; display: block;">
+            <span style="font-weight: bold; font-size: 14px; letter-spacing: -0.5px; color: #111; margin-right: 12px; vertical-align: middle;">abiertostudio.</span>
+            <a href="${baseUrl}/api/unsubscribe?email=${encodeURIComponent(designer.email)}" style="color: #666; text-decoration: underline; vertical-align: middle;">unsubscribe</a>
+          </div>
+        </div>
       `;
 
       return resend.emails.send({
         from: 'Abierto Briefs <hello@abiertostudio.com>',
         to: designer.email,
-        subject: 'Your Sunday Design Brief is Here 🎯',
+        subject,
         html: htmlBody,
       });
     });
@@ -89,8 +141,9 @@ Keep tone realistic, not generic. Pick a random category from: Coffee shops, Sau
 
     return NextResponse.json({
       success: true,
-      sentCount: designers.length,
-      briefPreview: briefText.substring(0, 150) + "..."
+      sentCount: designersToEmail.length,
+      brandName,
+      briefPreview: emailBody.substring(0, 150) + "..."
     });
 
   } catch (error: any) {
