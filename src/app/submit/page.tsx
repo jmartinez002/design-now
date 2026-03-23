@@ -92,7 +92,7 @@ export default function SubmitPage() {
                 >
                   <div className={styles.btnIconWrapper}>
                     <svg className={styles.btnIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="22 2 15 22 11 13 2 9 22 2"></polyline>
+                      <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
                   </div>
                   {status === 'loading' ? 'Sending...' : 'Submit Showcase'}
