@@ -34,8 +34,8 @@ export async function POST(request: Request) {
         html: `
           <div style="font-family: Helvetica, Arial, sans-serif; line-height: 1.6; color: #111;">
             <p>Hi ${firstName},</p>
-            <p>Welcome to Abierto! So glad you're here.</p>
-            <p>Every Monday, a new realistic client scenario will drop in your inbox.</p>
+            <p>Welcome to Abierto Briefs! So glad you're here.</p>
+            <p>Every Monday, a real client scenario will drop in your inbox.</p>
             <p>It's simple: do the work to stack your portfolio, then submit your final design. The top submissions are featured in our Sunday Showcase!</p>
             <p>We can't wait to see what you create.</p>
             <p>Your first brief lands Monday.</p>
