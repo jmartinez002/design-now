@@ -30,22 +30,15 @@ export async function POST(request: Request) {
       await resend.emails.send({
         from: 'Abierto Briefs <hello@abiertostudio.com>',
         to: email,
-        subject: 'You’re in. Your first brief lands Sunday.',
+        subject: 'You’re in. Your first brief lands Monday.',
         html: `
           <div style="font-family: Helvetica, Arial, sans-serif; line-height: 1.6; color: #111;">
             <p>Hi ${firstName},</p>
-            <p>Glad you’re here.</p>
-            <p>
-              Every Sunday, you’ll get a real client-style brief.<br/>
-              Not a prompt—an actual scenario with context and direction.
-            </p>
-            <p>
-              Take it, design your solution, and build it into your portfolio.
-            </p>
-            <p>
-              That’s it. Just consistent reps.
-            </p>
-            <p>Your first brief lands Sunday.</p>
+            <p>Welcome to Abierto! So glad you're here.</p>
+            <p>Every Monday, a new realistic client scenario will drop in your inbox.</p>
+            <p>It's simple: do the work to stack your portfolio, then submit your final design. The top submissions are featured in our Sunday Showcase!</p>
+            <p>We can't wait to see what you create.</p>
+            <p>Your first brief lands Monday.</p>
             <p>— Abierto</p>
           </div>
         `
