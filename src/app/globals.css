@@ -19,7 +19,6 @@ html {
   font-family: var(--font-nostalgica-reg), "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
-  letter-spacing: 1px;
 }
 
 .font-mono {
