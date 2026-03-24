@@ -125,7 +125,7 @@ export default function SignupForm() {
               </svg>
               Submit your work
             </div>
-            <p>Submit your link or email your designs directly. I personally review every piece to pick the top 5.</p>
+            <p>Submit your link or email your designs directly. Our team will review every submission.</p>
           </div>
 
           <div className={styles.infoBox}>
@@ -135,7 +135,7 @@ export default function SignupForm() {
               </svg>
               Sunday Showcase
             </div>
-            <p>Get featured in our top 5 Sunday showcase and see how others approached the real-world brief.</p>
+            <p>Get featured in our Sunday showcase and see how others approached the brief.</p>
           </div>
         </div>
 
