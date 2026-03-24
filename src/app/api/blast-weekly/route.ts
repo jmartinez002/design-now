@@ -8,7 +8,7 @@ export const maxDuration = 60;
 
 const geminiApiKey = process.env.GEMINI_API_KEY || 'mock_key';
 const supabaseUrl = process.env.SUPABASE_URL || 'mock_url';
-const supabaseKey = process.env.SUPABASE_ANON_KEY || 'mock_key';
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || 'mock_key';
 const resendApiKey = process.env.RESEND_API_KEY || 'mock_key';
 const cronSecret = process.env.CRON_SECRET || 'secret123'; // Define this in your .env.local
 
@@ -81,19 +81,19 @@ Pick a random category from: Coffee shops, Sauces / food brands, Mezcal / bevera
 
     if (testEmail) {
       // 3A. TEST MODE: Only send to the provided test email
-      designersToEmail = [{ email: testEmail, first_name: 'TestDesigner' }];
+      designersToEmail = [{ email: testEmail, first_name: 'TestDesigner', studio_name: 'Test Studio' }];
     } else {
       // 3B. LIVE MODE: FETCH ALL USERS FROM SUPABASE
       const { data: designers, error: dbError } = await supabase
         .from('designers')
-        .select('email, first_name');
+        .select('email, first_name, studio_name');
 
       if (dbError) throw dbError;
 
       if (!designers || designers.length === 0) {
         return NextResponse.json({ message: 'Success, but no designers found in the database.' });
       }
-      
+
       designersToEmail = designers;
     }
 
@@ -113,8 +113,11 @@ Pick a random category from: Coffee shops, Sauces / food brands, Mezcal / bevera
 
     // Loop through everyone and send individual emails simultaneously
     const emailPromises = designersToEmail.map((designer: any) => {
-      const subject = `${designer.first_name} x ${brandName}`;
-      
+      const displayName = designer.studio_name && designer.studio_name.trim() !== ''
+        ? designer.studio_name
+        : designer.first_name;
+      const subject = `${displayName} x ${brandName}`;
+
       // Create a nice HTML wrapper
       const htmlBody = `
         <div style="font-family: sans-serif; line-height: 1.5; color: #111;">
