@@ -57,13 +57,19 @@ The emailBody must follow these strict rules:
 
 Pick a random category from: Coffee shops, Sauces / food brands, Mezcal / beverage brands, Churches / nonprofits, Startups, Local businesses.`;
 
-    const aiResponse = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
-      contents: prompt,
-      config: {
-        responseMimeType: "application/json",
-      }
-    });
+    let aiResponse;
+    try {
+      aiResponse = await ai.models.generateContent({
+        model: 'gemini-2.5-flash',
+        contents: prompt,
+        config: {
+          responseMimeType: "application/json",
+        }
+      });
+    } catch (error: any) {
+      console.error("Gemini Error:", error);
+      return NextResponse.json({ error: "Failed to generate brief with Gemini (" + (error.message || "fetch failed") + ")" }, { status: 500 });
+    }
 
     const aiText = aiResponse.text || "{}";
     let brandName = "A Local Business";
@@ -84,11 +90,18 @@ Pick a random category from: Coffee shops, Sauces / food brands, Mezcal / bevera
       designersToEmail = [{ email: testEmail, first_name: 'TestDesigner', studio_name: 'Test Studio' }];
     } else {
       // 3B. LIVE MODE: FETCH ALL USERS FROM SUPABASE
-      const { data: designers, error: dbError } = await supabase
-        .from('designers')
-        .select('email, first_name, studio_name');
+      let designers;
+      try {
+        const { data, error: dbError } = await supabase
+          .from('designers')
+          .select('email, first_name, studio_name');
 
-      if (dbError) throw dbError;
+        if (dbError) throw dbError;
+        designers = data;
+      } catch (error: any) {
+        console.error("Supabase Database Error:", error);
+        return NextResponse.json({ error: "Failed to connect to Supabase. Check if your project is paused or URL is correct in .env.local (" + (error.message || "fetch failed") + ")" }, { status: 500 });
+      }
 
       if (!designers || designers.length === 0) {
         return NextResponse.json({ message: 'Success, but no designers found in the database.' });
